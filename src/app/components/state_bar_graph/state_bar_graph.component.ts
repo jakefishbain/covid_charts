@@ -66,7 +66,7 @@ export class StateBarGraph implements OnInit, OnChanges {
 
   formatTestData = () => {
     this.xAxisLabel = this.state.title
-    this.data = this.data.slice(0,9).reverse().map(day => {
+    this.data = this.data.slice(0,this.day_count).reverse().map(day => {
         return {
           'name': this.formatDay(day.date.toString()),
           'value': day.totalTestResultsIncrease
