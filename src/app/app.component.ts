@@ -12,10 +12,11 @@ dayjs().format()
 export class AppComponent {
   states: any[];
   selected_state = { 'abbv': 'IL', 'title': 'Illinois' };
-  day_count: number = 9;
+  day_count: number = 10;
   day_count_array: any[] = Array(this.day_count)
   mode: string = 'd';
   abbv: string;
+  show_diff: boolean = false;
 
   constructor() {
     this.states = states
@@ -30,10 +31,16 @@ export class AppComponent {
   selectMode = (e) => this.mode = e.target.value
 
   getDayCount = () => {
-    this.day_count = dayjs().diff('2020-03-05', 'day')
+    // this.day_count = dayjs().diff('2020-03-05', 'day')
     this.day_count_array = Array(this.day_count)
   }
 
   changeDayCount= e => this.day_count = parseInt(e.target.value)
+
+  toggleDiff = () => {
+    console.log('togglin!', this.show_diff);
+    this.show_diff = !this.show_diff;
+    console.log(this.show_diff);
+  }
 
 }

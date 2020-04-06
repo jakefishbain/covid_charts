@@ -1,6 +1,6 @@
 <div class='h-100'>
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand w-100 m-0" href="#">
+    <a class="navbar-brand w-100" href="#">
       <select (change)="selectState($event)" class=''>
         <option *ngFor="let state of states" [selected]='selected_state.abbv == state.abbv' [value]='state.abbv'>
           {{state.title}}
@@ -16,10 +16,20 @@
           {{x + 1}}
         </option>
       </select>
+      <span>
+        <label for='show_diff' class='ml-2'>Show Diff:</label>
+        <input type='checkbox' (click)='toggleDiff()' id='show_diff' class='ml-2 mb-1'/>
+      </span>
     </a>
   </nav>
-  <div class="content container w-100" style='display: grid;'>
-    <app-state-bar-graph class='' [state]='selected_state' [day_count]='day_count' [mode]='mode'>
+  <div class="content px-5 w-100" style='display: grid;'>
+    <app-state-bar-graph
+      class=''
+      [state]='selected_state'
+      [day_count]='day_count'
+      [mode]='mode'
+      [show_diff]='show_diff'
+    >
     </app-state-bar-graph>
   </div>
 </div>

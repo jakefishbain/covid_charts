@@ -28,6 +28,7 @@ export class StateBarGraph implements OnInit, OnChanges {
   @Input() state;
   @Input() mode;
   @Input() day_count;
+  @Input() show_diff
 
   state_base_url: string = 'https://covidtracking.com/api/states/daily?state=';
 
@@ -36,14 +37,12 @@ export class StateBarGraph implements OnInit, OnChanges {
 
   async ngOnInit() {
     await this.getData(this.state.abbv)
-    this.mode === 'd' ? this.formatDeathData() : this.formatTestData()
-
-    console.log('this.day_count', this.day_count);
-    console.log('this.state', this.state);
+    this.show_diff ? this.formatDiffData(this.mode === 'd' ? null : 'totalTestResultsIncrease' ) : this.mode === 'd' ? this.formatDeathData() : this.formatTestData()
+    this.xAxisLabel = this.state.title
   }
 
   ngOnChanges() {
-    this.ngOnInit()
+    this.ngOnInit();
 
     this.colorScheme = {
       domain: this.mode == 'd' ? ['#8F0000'] : ['#02539A']
@@ -55,7 +54,6 @@ export class StateBarGraph implements OnInit, OnChanges {
   }
 
   formatDeathData = () => {
-    this.xAxisLabel = this.state.title
     this.data = this.data.slice(0,this.day_count).reverse().map(day => {
         return {
           'name': this.formatDay(day.date.toString()),
@@ -65,7 +63,6 @@ export class StateBarGraph implements OnInit, OnChanges {
   }
 
   formatTestData = () => {
-    this.xAxisLabel = this.state.title
     this.data = this.data.slice(0,this.day_count).reverse().map(day => {
         return {
           'name': this.formatDay(day.date.toString()),
@@ -74,11 +71,21 @@ export class StateBarGraph implements OnInit, OnChanges {
      });
   }
 
-  formatDay = (day) => {
+  formatDiffData = (mode = 'deathIncrease') => {
+    let slicedData = this.data.slice(0,this.day_count).reverse()
+    this.data = slicedData.map((day, idx) => {
+      return {
+        'name': idx> 0 ? `${this.formatDay(slicedData[idx-1].date.toString(), false)} - ${this.formatDay(day.date.toString(), false)}` : this.formatDay(day.date.toString()),
+        'value': idx > 0 ? day[mode] - slicedData[idx-1][mode] : 0
+      }
+   });
+  }
+
+  formatDay = (day, includeYear = true) => {
     let yyyy = day.slice(0,4)
     let mm = day.slice(4,6)
     let dd = day.slice(6,8)
 
-    return `${mm}/${dd}/${yyyy}`
+    return `${mm}/${dd}${includeYear ? '/' + yyyy : ''}`
   }
 }
