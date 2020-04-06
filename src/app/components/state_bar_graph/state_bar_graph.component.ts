@@ -11,7 +11,7 @@ export class StateBarGraph implements OnInit, OnChanges {
   data: any[];
   deathData: any[];
   testData: any[];
-  view: any[] = [800, 300];
+  view = "";
 
   // options
   showXAxis: boolean = true;

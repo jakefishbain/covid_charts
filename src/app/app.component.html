@@ -1,22 +1,25 @@
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand w-100 m-0" href="#">
-    <select (change)="selectState($event)" class=''>
-      <option *ngFor="let state of states" [selected]='selected_state.abbv == state.abbv' [value]='state.abbv'>
-        {{state.title}}
-      </option>
-    </select>
-    <select (change)="selectMode($event)" class='mx-2'>
-      <option value='d'>Daily Deaths</option>
-      <option value='t'>Daily Tests</option>
-    </select>
-    DAYS:
-    <select (change)="changeDayCount($event)" class=''>
-      <option *ngFor="let i of day_count_array, let x = index" [value]='x' [selected]='x + 1 == day_count'>
-        {{x + 1}}
-      </option>
-    </select>
-  </a>
-</nav>
-<div class="mx-auto">
-  <app-state-bar-graph [state]='selected_state' [day_count]='day_count' [mode]='mode'></app-state-bar-graph>
+<div class='h-100'>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand w-100 m-0" href="#">
+      <select (change)="selectState($event)" class=''>
+        <option *ngFor="let state of states" [selected]='selected_state.abbv == state.abbv' [value]='state.abbv'>
+          {{state.title}}
+        </option>
+      </select>
+      <select (change)="selectMode($event)" class='mx-2'>
+        <option value='d'>Daily Deaths</option>
+        <option value='t'>Daily Tests</option>
+      </select>
+      DAYS:
+      <select (change)="changeDayCount($event)" class=''>
+        <option *ngFor="let i of day_count_array, let x = index" [value]='x' [selected]='x + 1 == day_count'>
+          {{x + 1}}
+        </option>
+      </select>
+    </a>
+  </nav>
+  <div class="content container w-100" style='display: grid;'>
+    <app-state-bar-graph class='' [state]='selected_state' [day_count]='day_count' [mode]='mode'>
+    </app-state-bar-graph>
+  </div>
 </div>
