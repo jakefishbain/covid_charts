@@ -68,7 +68,7 @@ export class StateBarGraph implements OnChanges {
   }
 
   checkDiff = () => {
-    this.show_diff ? this.formatDiffData(this.mode === 'd' ? 'deathIncrease' : 'totalTestResultsIncrease') : null
+    this.show_diff ? this.formatDiffData() : null
   }
 
   formatData = () => {
@@ -81,12 +81,12 @@ export class StateBarGraph implements OnChanges {
      });
   }
 
-  formatDiffData = (mode) => {
-    debugger
+  formatDiffData = () => {
+    // debugger
     this.display_data = this.data.map((day, idx) => {
       return {
         'name': idx > 0 ? `${this.formatDay(this.data[idx-1].date.toString(), false)} - ${this.formatDay(day.date.toString(), false)}` : this.formatDay(day.date.toString()),
-        'value': idx > 0 ? day[mode] - this.data[idx-1][mode] : 0
+        'value': idx > 0 ? day[this.mode] - this.data[idx-1][this.mode] : 0
       }
    });
   }
