@@ -37,7 +37,7 @@ export class StateBarGraph implements OnInit, OnChanges {
 
   async ngOnInit() {
     await this.getData(this.state.abbv)
-    this.show_diff ? this.formatDiffData(this.mode === 'd' ? null : 'totalTestResultsIncrease' ) : this.mode === 'd' ? this.formatDeathData() : this.formatTestData()
+    this.show_diff ? this.formatDiffData(this.mode === 'd' ? 'deathIncrease' : 'totalTestResultsIncrease') : this.mode === 'd' ? this.formatDeathData() : this.formatTestData()
     this.xAxisLabel = this.state.title
   }
 
@@ -66,16 +66,17 @@ export class StateBarGraph implements OnInit, OnChanges {
     this.data = this.data.slice(0,this.day_count).reverse().map(day => {
         return {
           'name': this.formatDay(day.date.toString()),
-          'value': day.totalTestResultsIncrease
+          'value': day.totalTestResultsIncrease || 0
         }
      });
   }
 
-  formatDiffData = (mode = 'deathIncrease') => {
+  formatDiffData = (mode) => {
     let slicedData = this.data.slice(0,this.day_count).reverse()
+    // debugger
     this.data = slicedData.map((day, idx) => {
       return {
-        'name': idx> 0 ? `${this.formatDay(slicedData[idx-1].date.toString(), false)} - ${this.formatDay(day.date.toString(), false)}` : this.formatDay(day.date.toString()),
+        'name': idx > 0 ? `${this.formatDay(slicedData[idx-1].date.toString(), false)} - ${this.formatDay(day.date.toString(), false)}` : this.formatDay(day.date.toString()),
         'value': idx > 0 ? day[mode] - slicedData[idx-1][mode] : 0
       }
    });
