@@ -14,7 +14,7 @@ export class AppComponent {
   selected_state = { 'abbv': 'IL', 'title': 'Illinois' };
   day_count: number = 10;
   day_count_array: any[] = Array(this.day_count)
-  mode: string = 'd';
+  mode: string = 'deathIncrease';
   abbv: string;
   show_diff: boolean = false;
 

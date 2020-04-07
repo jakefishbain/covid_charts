@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { states } from './states_data.js'
 
 @Component({
@@ -7,10 +7,9 @@ import { states } from './states_data.js'
   styleUrls: []
 })
 
-export class StateBarGraph implements OnInit, OnChanges {
+export class StateBarGraph implements OnChanges {
   data: any[];
-  deathData: any[];
-  testData: any[];
+  display_data: any[];
   view = "";
 
   // options
@@ -35,49 +34,59 @@ export class StateBarGraph implements OnInit, OnChanges {
 
   constructor() {   }
 
-  async ngOnInit() {
+  async ngOnChanges() {
     await this.getData(this.state.abbv)
-    this.show_diff ? this.formatDiffData(this.mode === 'd' ? 'deathIncrease' : 'totalTestResultsIncrease') : this.mode === 'd' ? this.formatDeathData() : this.formatTestData()
     this.xAxisLabel = this.state.title
-  }
-
-  ngOnChanges() {
-    this.ngOnInit();
+    // console.log('diff',this.show_diff)
+    this.formatData()
+    this.checkDiff()
 
     this.colorScheme = {
-      domain: this.mode == 'd' ? ['#8F0000'] : ['#02539A']
+      domain: this.getColorScheme()
     };
+  }
+
+  getColorScheme = () => {
+    console.log('MODE',this.mode);
+
+    switch(this.mode) {
+      case 'deathIncrease':
+        return ['#8F0000'];
+      case 'totalTestResultsIncrease':
+        return ['#02539A'];
+      case 'positiveIncrease':
+        return ['#0f920f'];
+      case 'negativeIncrease':
+        return ['#9f0d5e']
+      default:
+        return ''
+    }
   }
 
   getData = async (state) => {
     await fetch(this.state_base_url + state).then( async res => this.data = await res.json());
   }
 
-  formatDeathData = () => {
-    this.data = this.data.slice(0,this.day_count).reverse().map(day => {
-        return {
-          'name': this.formatDay(day.date.toString()),
-          'value': day.deathIncrease
-        }
-     });
+  checkDiff = () => {
+    this.show_diff ? this.formatDiffData(this.mode === 'd' ? 'deathIncrease' : 'totalTestResultsIncrease') : null
   }
 
-  formatTestData = () => {
-    this.data = this.data.slice(0,this.day_count).reverse().map(day => {
+  formatData = () => {
+    this.data = this.data.slice(0,this.day_count).reverse()
+    this.display_data = this.data.map(day => {
         return {
           'name': this.formatDay(day.date.toString()),
-          'value': day.totalTestResultsIncrease || 0
+          'value': day[this.mode]
         }
      });
   }
 
   formatDiffData = (mode) => {
-    let slicedData = this.data.slice(0,this.day_count).reverse()
-    // debugger
-    this.data = slicedData.map((day, idx) => {
+    debugger
+    this.display_data = this.data.map((day, idx) => {
       return {
-        'name': idx > 0 ? `${this.formatDay(slicedData[idx-1].date.toString(), false)} - ${this.formatDay(day.date.toString(), false)}` : this.formatDay(day.date.toString()),
-        'value': idx > 0 ? day[mode] - slicedData[idx-1][mode] : 0
+        'name': idx > 0 ? `${this.formatDay(this.data[idx-1].date.toString(), false)} - ${this.formatDay(day.date.toString(), false)}` : this.formatDay(day.date.toString()),
+        'value': idx > 0 ? day[mode] - this.data[idx-1][mode] : 0
       }
    });
   }
