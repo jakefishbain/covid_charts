@@ -31,8 +31,8 @@ export class AppComponent {
   selectMode = (e) => this.mode = e.target.value
 
   getDayCount = () => {
-    // this.day_count = dayjs().diff('2020-03-05', 'day')
-    this.day_count_array = Array(this.day_count)
+    let day_diff = dayjs().diff('2020-03-05', 'day')
+    this.day_count_array = Array(day_diff)
   }
 
   changeDayCount= e => this.day_count = parseInt(e.target.value)
