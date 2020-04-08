@@ -2,24 +2,37 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
   <!-- Navbar brand -->
   <mdb-navbar-brand>
-    <ul class="navbar-brand navbar-nav mr-auto">
+    <div class="navbar-brand navbar-nav mr-auto">
       <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
+      <div class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-        Basic dropdown<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
-            <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+        {{selected_state.title}}<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdownContainer dropdown-menu dropdown dropdown-primary" role="menu">
+          <div
+            class="dropdown-item waves-light border-bottom"
+            mdbWavesEffect
+            *ngFor='let item of dropdown_items'
+            (click)='selectState(item)'
+            [ngClass]="{active : item == selected_state}"
+          >{{item.title}}
         </div>
-      </li>
-    </ul>
+        </div>
+      </div>
+      <div class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+        {{graph_type}}<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdownContainer dropdown-menu dropdown dropdown-primary" role="menu">
+          <div
+            class="dropdown-item waves-light border-bottom"
+            mdbWavesEffect
+            *ngFor='let item of graph_types'
+            (click)='selectType(item)'
+            [ngClass]="{active : item == selected_state}"
+          >{{item}}
+        </div>
+        </div>
+      </div>
+    </div>
   </mdb-navbar-brand>
-  <!-- Collapsible content -->
-  <links>
-    <ul class="navbar-brand navbar-nav mr-auto">
-    </ul>
-  </links>
-  <!-- Collapsible content -->
 </mdb-navbar>
 <!--/.Navbar-->

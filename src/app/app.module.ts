@@ -9,13 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 
-import { StateBarGraph } from './components/state_bar_graph/state_bar_graph.component'
+import { StateBarGraph } from './components/state_bar_graph/state_bar_graph.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     StateBarGraph,
-    NavComponent
+    NavComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,

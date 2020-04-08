@@ -8,7 +8,7 @@ import { states } from './states_data.js'
 })
 
 export class StateBarGraph implements OnChanges {
-  data: any[];
+  data: any[]; //mdb
   display_data: any[];
   view = "";
 

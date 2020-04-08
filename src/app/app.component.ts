@@ -11,24 +11,21 @@ dayjs().format()
 })
 export class AppComponent {
   states: any[];
-  selected_state = { 'abbv': 'IL', 'title': 'Illinois' };
+  selected_state: any = { 'abbv': 'IL', 'title': 'Illinois' };
   day_count: number = 10;
   day_count_array: any[] = Array(this.day_count)
   mode: string = 'deathIncrease';
   abbv: string;
   show_diff: boolean = false;
+  graph_type: string = 'bar'
+  graph_types: Array<any> = ['line', 'bar']
 
   constructor() {
     this.states = states
-    this.getDayCount()
   }
 
-  selectState = (e) => {
-    this.abbv = e.target.value
-    this.selected_state = this.states.find(s => s.abbv === this.abbv);
-  }
-
-  selectMode = (e) => this.mode = e.target.value
+  changeState = (state) => this.selected_state = state
+  changeGraphType = (graph_type) => this.graph_type = graph_type
 
   getDayCount = () => {
     let day_diff = dayjs().diff('2020-03-05', 'day')

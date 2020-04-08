@@ -1,4 +1,4 @@
-<div class='h-100'>
+<!-- <div class='h-100'>
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand w-100" href="#">
       <select (change)="selectState($event)" class=''>
@@ -47,7 +47,21 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+<app-nav
+  [dropdown_items]='states'
+  (stateSelected)='changeState($event)'
+  (typeSelected)='changeGraphType($event)'
+  [selected_state]='selected_state'
+  [graph_type]='graph_type'
+  [graph_types]='graph_types'
+  >
+</app-nav>
+<div class="container mt-4">
+  <app-bar-chart
+  [selected_state]='selected_state'
+  [graph_type]='graph_type'
+  ></app-bar-chart>
 </div>
-
-
-<!-- <app-nav></app-nav> -->
