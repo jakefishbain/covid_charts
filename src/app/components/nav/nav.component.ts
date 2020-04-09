@@ -17,7 +17,6 @@ export class NavComponent implements OnChanges {
   @Input() day_count_array = [];
 
   @Output() stateSelected = new EventEmitter();
-  // @Output() typeSelected = new EventEmitter();
   @Output() daysSelected = new EventEmitter();
 
   ngOnChanges() {
@@ -29,7 +28,6 @@ export class NavComponent implements OnChanges {
   selectDays = (num) => this.daysSelected.emit(num)
 
   getDayCount = () => {
-    // debugger
     let day_diff = dayjs().diff('2020-03-05', 'day')
     this.day_count_array = Array(day_diff)
   }
