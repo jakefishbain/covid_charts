@@ -8,10 +8,11 @@ import { Component, OnChanges, Input } from '@angular/core';
 export class BarChartComponent implements OnChanges {
   public chartType = 'bar';
   private state_base_url: string = 'https://covidtracking.com/api/states/daily?state=';
-  private day_count: number = 10;
+  // private day_count: number = 10;
 
-  @Input() graph_type: string;
+  // @Input() graph_type: string;
   @Input() data: any[];
+  @Input() day_count;
   @Input() selected_state;
 
   public chartDatasets: Array<any> = [
@@ -29,18 +30,27 @@ export class BarChartComponent implements OnChanges {
 
   async ngOnChanges() {
     await this.getData()
+    console.log('this.day', this.day_count);
+
     this.chartDatasets = [
       // loop over
-      { data: this.formatData('deathIncrease'), label: 'Daily Deaths', type: this.graph_type},
-      { data: this.formatData('totalTestResultsIncrease'), label: 'Daily Tests', type: this.graph_type},
-      { data: this.formatData('positiveIncrease'), label: 'Daily Positives', type: this.graph_type},
-      { data: this.formatData('negativeIncrease'), label: 'Daily Negatives', type: this.graph_type},
+      { data: this.formatData('deathIncrease'), label: 'Daily Deaths', type: this.chartType},
+      { data: this.formatData('totalTestResultsIncrease'), label: 'Daily Tests', type: this.chartType},
+      { data: this.formatData('positiveIncrease'), label: 'Daily Positives', type: this.chartType},
+      { data: this.formatData('negativeIncrease'), label: 'Daily Negatives', type: this.chartType},
     ]
     this.chartLabels = this.formatData('date').map(day => this.formatDay(day.toString()))
-    this.chartType = this.graph_type
+    this.chartType = this.chartType
+  }
+
+  changeChartType = (e) => {
+    this.chartType = e.target.value
+    this.ngOnChanges()
   }
 
   getData = async () => {
+    console.log('gettin new data...');
+
     await fetch(this.state_base_url + this.selected_state.abbv).then( async res => this.data = await res.json());
     this.data = this.data.slice(0,this.day_count).reverse()
   }

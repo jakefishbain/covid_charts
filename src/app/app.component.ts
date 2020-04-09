@@ -13,31 +13,22 @@ export class AppComponent {
   states: any[];
   selected_state: any = { 'abbv': 'IL', 'title': 'Illinois' };
   day_count: number = 10;
-  day_count_array: any[] = Array(this.day_count)
+  // day_count_array: any[];
   mode: string = 'deathIncrease';
   abbv: string;
   show_diff: boolean = false;
-  graph_type: string = 'bar'
-  graph_types: Array<any> = ['line', 'bar']
 
   constructor() {
     this.states = states
   }
 
   changeState = (state) => this.selected_state = state
-  changeGraphType = (graph_type) => this.graph_type = graph_type
+  changeDayCount = (days) => this.day_count = days
 
-  getDayCount = () => {
-    let day_diff = dayjs().diff('2020-03-05', 'day')
-    this.day_count_array = Array(day_diff)
-  }
-
-  changeDayCount= e => this.day_count = parseInt(e.target.value)
-
-  toggleDiff = () => {
-    console.log('togglin!', this.show_diff);
-    this.show_diff = !this.show_diff;
-    console.log(this.show_diff);
-  }
+  // toggleDiff = () => {
+  //   console.log('togglin!', this.show_diff);
+  //   this.show_diff = !this.show_diff;
+  //   console.log(this.show_diff);
+  // }
 
 }

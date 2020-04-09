@@ -53,15 +53,18 @@
 <app-nav
   [dropdown_items]='states'
   (stateSelected)='changeState($event)'
-  (typeSelected)='changeGraphType($event)'
   [selected_state]='selected_state'
-  [graph_type]='graph_type'
-  [graph_types]='graph_types'
+  [day_count]='day_count'
+  (daysSelected)='changeDayCount($event)'
   >
+  <!-- (typeSelected)='changeGraphType($event)' -->
+  <!-- [graph_type]='graph_type'
+  [graph_types]='graph_types' -->
 </app-nav>
 <div class="container mt-4">
   <app-bar-chart
+  [day_count]='day_count'
   [selected_state]='selected_state'
-  [graph_type]='graph_type'
   ></app-bar-chart>
+  <!-- [graph_type]='graph_type' -->
 </div>

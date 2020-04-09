@@ -1,4 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+
+import * as dayjs from 'dayjs'
+dayjs().format()
 
 @Component({
   selector: 'app-nav',
@@ -6,19 +9,28 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 
-export class NavComponent {
+export class NavComponent implements OnChanges {
+
   @Input() dropdown_items;
   @Input() selected_state;
-  @Input() graph_type;
-  @Input() graph_types;
-  @Output() stateSelected = new EventEmitter();
-  @Output() typeSelected = new EventEmitter();
+  @Input() day_count;
+  @Input() day_count_array = [];
 
-  selectState = (state) => {
-    this.stateSelected.emit(state)
+  @Output() stateSelected = new EventEmitter();
+  // @Output() typeSelected = new EventEmitter();
+  @Output() daysSelected = new EventEmitter();
+
+  ngOnChanges() {
+    this.getDayCount()
   }
 
-  selectType = (type) => {
-    this.typeSelected.emit(type)
+  selectState = (state) => this.stateSelected.emit(state)
+
+  selectDays = (num) => this.daysSelected.emit(num)
+
+  getDayCount = () => {
+    // debugger
+    let day_diff = dayjs().diff('2020-03-05', 'day')
+    this.day_count_array = Array(day_diff)
   }
 }

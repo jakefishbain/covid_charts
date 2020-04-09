@@ -20,15 +20,15 @@
       </div>
       <div class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-        {{graph_type}}<span class="caret"></span></a>
+        {{day_count}}<span class="caret"></span></a>
         <div *dropdownMenu class="dropdownContainer dropdown-menu dropdown dropdown-primary" role="menu">
           <div
             class="dropdown-item waves-light border-bottom"
             mdbWavesEffect
-            *ngFor='let item of graph_types'
-            (click)='selectType(item)'
-            [ngClass]="{active : item == selected_state}"
-          >{{item}}
+            *ngFor='let item of day_count_array, let x = index'
+            (click)='selectDays(x + 1)'
+            [ngClass]="{active : x + 1 == day_count}"
+          >{{x + 1}}
         </div>
         </div>
       </div>
