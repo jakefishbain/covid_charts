@@ -8,11 +8,11 @@
   </canvas>
   <div class='d-flex justify-content-center'>
     <div class="custom-control custom-radio m-2" (change)='changeChartType($event)'>
-      <input type="radio" class="custom-control-input" id="bar" name="bar" mdbInput value='bar'>
+      <input type="radio" class="custom-control-input" id="bar" name="bar" mdbInput [checked]="chartType === 'bar'" value='bar'>
       <label class="custom-control-label" for="bar">Bar</label>
     </div>
     <div class="custom-control custom-radio m-2" (change)='changeChartType($event)'>
-      <input type="radio" class="custom-control-input" id="line" name="line" mdbInput value='line'>
+      <input type="radio" class="custom-control-input" id="line" name="line" mdbInput [checked]="chartType === 'line'" value='line'>
       <label class="custom-control-label" for="line">Line</label>
     </div>
   </div>

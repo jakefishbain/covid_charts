@@ -30,7 +30,7 @@ export class BarChartComponent implements OnChanges {
 
   async ngOnChanges() {
     await this.getData()
-    console.log('this.day', this.day_count);
+    console.log('changin...');
 
     this.chartDatasets = [
       // loop over
@@ -40,7 +40,6 @@ export class BarChartComponent implements OnChanges {
       { data: this.formatData('negativeIncrease'), label: 'Daily Negatives', type: this.chartType},
     ]
     this.chartLabels = this.formatData('date').map(day => this.formatDay(day.toString()))
-    this.chartType = this.chartType
   }
 
   changeChartType = (e) => {
