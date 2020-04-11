@@ -1,24 +1,16 @@
 <table mdbTable hover='true' class="z-depth-1 w-100 table-responsive-md">
   <thead>
   <tr>
-    <th [mdbTableSort]="data" sortBy="date">Date</th>
-    <th [mdbTableSort]="data" sortBy="totalTestResultsIncrease">Daily Tests</th>
-    <th [mdbTableSort]="data" sortBy="positiveIncrease">Daily Positive</th>
-    <th [mdbTableSort]="data" sortBy="negativeIncrease">Daily Negative</th>
-    <th [mdbTableSort]="data" sortBy="deathIncrease">Daily Deaths</th>
-    <th [mdbTableSort]="data" sortBy="hospitalizedCurrently">Currently Hospitalized</th>
-    <th [mdbTableSort]="data" sortBy="inIcuCurrently">Currently in ICU</th>
+    <th [mdbTableSort]="data" sortBy="date">Date&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+    <th [mdbTableSort]="data" *ngFor='let row of data_format' [sortBy]="row['key']">{{row['header']}}&nbsp;
+      <mdb-icon fas icon="sort"></mdb-icon>
+    </th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let el of data; let i = index">
-    <th scope="row">{{el.date | dayFormatter }}</th>
-    <td>{{el.totalTestResultsIncrease}}</td>
-    <td>{{el.positiveIncrease}}</td>
-    <td>{{el.negativeIncrease}}</td>
-    <td>{{el.deathIncrease}}</td>
-    <td>{{el.hospitalizedCurrently}}</td>
-    <td>{{el.inIcuCurrently}}</td>
+    <td scope="row">{{el.date | dayFormatter }}</td>
+    <td *ngFor='let row of data_format'>{{el[row['key']]}}</td>
   </tr>
   </tbody>
 </table>

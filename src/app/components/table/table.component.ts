@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DayFormatter } from '../day_formatter.pipe'
 
 @Component({
   selector: 'app-table',
@@ -8,13 +7,19 @@ import { DayFormatter } from '../day_formatter.pipe'
 })
 export class TableComponent implements OnInit {
   @Input() data;
+  data_format: any[] = [
+    { 'header': 'Daily Tests', 'key': 'totalTestResultsIncrease'},
+    { 'header': 'Daily Positive', 'key': 'positiveIncrease'},
+    { 'header': 'Daily Negative', 'key': 'negativeIncrease'},
+    { 'header': 'Daily Deaths', 'key': 'deathIncrease'},
+    { 'header': 'Currently Hospitalized', 'key': 'hospitalizedCurrently'},
+    { 'header': 'Currently in ICU', 'key': 'inIcuCurrently'},
+  ]
 
   constructor() {
    }
 
-  ngOnInit(): void {
-    // debugger
-  }
+  ngOnInit(): void {  }
 
   formatDay = (day) => {
     let yyyy = day.slice(0,4)
