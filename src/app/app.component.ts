@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { states } from './components/states_data.js'
 import * as dayjs from 'dayjs'
 dayjs().format()
@@ -8,7 +8,7 @@ dayjs().format()
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   states: any[];
   selected_state: any = { 'abbv': 'USA', 'title': 'United States'};
   day_count: number = 15;
@@ -17,28 +17,33 @@ export class AppComponent {
   show_diff: boolean = false;
   data: any[];
 
-  private state_base_url: string = 'https://covidtracking.com/api/states/daily?state=';
+  state_base_url: string = 'https://covidtracking.com/api/states/daily?state=';
   private us_url: string = 'https://covidtracking.com/api/us/daily';
 
   constructor() {
     this.states = states
-    this.getData()
+  }
+
+  async ngOnInit() {
+    await this.getData()
   }
 
   getData = async () => {
-    let url = this.selected_state.abbv = 'USA' ? this.us_url : this.state_base_url + this.selected_state.abbv
+    let url = this.selected_state.abbv === 'USA' ? this.us_url : this.state_base_url + this.selected_state.abbv
 
     await fetch(url).then( async res => this.data = await res.json());
     this.data = this.data.slice(0,this.day_count).reverse()
+    // debugger
   }
 
-  changeState = (state) => {
+  changeState = async (state) => {
+    debugger
     this.selected_state = state
-    this.getData()
+    await this.getData()
   }
 
-  changeDayCount = (days) => {
+  changeDayCount = async (days) => {
     this.day_count = days
-    this.getData()
+    await this.getData()
   }
 }
