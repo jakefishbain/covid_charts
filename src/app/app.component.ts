@@ -33,11 +33,9 @@ export class AppComponent implements OnInit {
 
     await fetch(url).then( async res => this.data = await res.json());
     this.data = this.data.slice(0,this.day_count).reverse()
-    // debugger
   }
 
   changeState = async (state) => {
-    debugger
     this.selected_state = state
     await this.getData()
   }
