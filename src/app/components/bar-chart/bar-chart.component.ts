@@ -6,7 +6,7 @@ import { Component, OnChanges, Input } from '@angular/core';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnChanges {
-  public chartType = 'bar';
+  public chartType = 'line';
 
   @Input() data: any[];
   @Input() selected_state;

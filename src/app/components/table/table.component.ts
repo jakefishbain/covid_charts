@@ -8,16 +8,20 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TableComponent implements OnInit {
   @Input() data;
   data_format: any[] = [
-    { 'header': 'Daily Tests', 'key': 'totalTestResultsIncrease'},
-    { 'header': 'Daily Positive', 'key': 'positiveIncrease'},
-    { 'header': 'Daily Negative', 'key': 'negativeIncrease'},
-    { 'header': 'Daily Deaths', 'key': 'deathIncrease'},
-    { 'header': 'Currently Hospitalized', 'key': 'hospitalizedCurrently'},
-    { 'header': 'Currently in ICU', 'key': 'inIcuCurrently'},
+    { 'header': 'Total Tests', 'key': 'total' },
+    { 'header': 'Total Positives', 'key': 'positive' },
+    { 'header': 'Total Negatives', 'key': 'negative' },
+    { 'header': 'Total Deaths', 'key': 'death' },
+    { 'header': 'Daily Tests', 'key': 'totalTestResultsIncrease' },
+    { 'header': 'Daily Positive', 'key': 'positiveIncrease' },
+    { 'header': 'Daily Negative', 'key': 'negativeIncrease' },
+    { 'header': 'Daily Deaths', 'key': 'deathIncrease' },
+    { 'header': 'Currently Hospitalized', 'key': 'hospitalizedCurrently' },
+    { 'header': 'Currently in ICU', 'key': 'inIcuCurrently' },
   ]
 
-  constructor() {   }
+  constructor() { }
 
-  ngOnInit(): void {   }
+  ngOnInit(): void { }
 
 }

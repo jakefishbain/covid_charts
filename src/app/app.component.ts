@@ -10,9 +10,8 @@ dayjs().format()
 })
 export class AppComponent {
   states: any[];
-  selected_state: any = { 'abbv': 'IL', 'title': 'Illinois' };
-  day_count: number = 10;
-  // day_count_array: any[];
+  selected_state: any = { 'abbv': 'USA', 'title': 'United States'};
+  day_count: number = 15;
   mode: string = 'deathIncrease';
   abbv: string;
   show_diff: boolean = false;
@@ -27,9 +26,9 @@ export class AppComponent {
   }
 
   getData = async () => {
-    console.log('gettin new data...');
+    let url = this.selected_state.abbv = 'USA' ? this.us_url : this.state_base_url + this.selected_state.abbv
 
-    await fetch(this.state_base_url + this.selected_state.abbv).then( async res => this.data = await res.json());
+    await fetch(url).then( async res => this.data = await res.json());
     this.data = this.data.slice(0,this.day_count).reverse()
   }
 

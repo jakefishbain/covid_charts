@@ -1,4 +1,5 @@
 export const states = [
+  { 'abbv': 'USA', 'title': 'United States'},
 	{ 'abbv': 'AL', 'title': 'Alabama' },
 	{ 'abbv': 'AK', 'title': 'Alaska' },
 	{ 'abbv': 'AZ', 'title': 'Arizona' },

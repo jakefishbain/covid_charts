@@ -12,6 +12,8 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { TableComponent } from './components/table/table.component'
 
 import { DayFormatter } from './components/day_formatter.pipe'
+import { NumFormatter } from './components/num_formatter.pipe'
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { DayFormatter } from './components/day_formatter.pipe'
     NavComponent,
     BarChartComponent,
     TableComponent,
-    DayFormatter
+    DayFormatter,
+    NumFormatter
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-<table mdbTable hover='true' class="z-depth-1 w-100 table-responsive-md">
+<table mdbTable hover='true' bordered='true' class="z-depth-1 w-100 table-responsive-md">
   <thead>
   <tr>
-    <th [mdbTableSort]="data" sortBy="date">Date&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+    <th [mdbTableSort]="data" sortBy="date"><bold>Date</bold>&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
     <th [mdbTableSort]="data" *ngFor='let row of data_format' [sortBy]="row['key']">{{row['header']}}&nbsp;
       <mdb-icon fas icon="sort"></mdb-icon>
     </th>
@@ -9,8 +9,8 @@
   </thead>
   <tbody>
   <tr *ngFor="let el of data; let i = index">
-    <td scope="row">{{el.date | dayFormatter }}</td>
-    <td *ngFor='let row of data_format'>{{el[row['key']]}}</td>
+    <th scope="row">{{el.date | dayFormatter }}</th>
+    <td *ngFor='let row of data_format'>{{el[row['key']] | numFormatter }}</td>
   </tr>
   </tbody>
 </table>

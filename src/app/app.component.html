@@ -8,11 +8,13 @@
 </app-nav>
 <div class="content d-flex flex-column mt-4">
   <app-bar-chart
+  *ngIf='data'
   [selected_state]='selected_state'
   [data]='data'
   ></app-bar-chart>
   <div class="h-divider mt-4 pt-4 align-self-center"></div>
   <app-table
+  *ngIf='data'
   [data]='data.reverse()'
   class='pb-4'
   >
