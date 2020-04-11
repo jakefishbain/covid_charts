@@ -3,27 +3,28 @@ import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 
-import { StateBarGraph } from './components/state_bar_graph/state_bar_graph.component';
-import { BarChartComponent } from './components/bar-chart/bar-chart.component'
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { TableComponent } from './components/table/table.component'
+
+import { DayFormatter } from './components/day_formatter.pipe'
 
 @NgModule({
   declarations: [
     AppComponent,
-    StateBarGraph,
     NavComponent,
-    BarChartComponent
+    BarChartComponent,
+    TableComponent,
+    DayFormatter
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgxChartsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [],

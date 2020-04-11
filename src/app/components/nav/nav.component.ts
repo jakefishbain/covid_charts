@@ -14,7 +14,7 @@ export class NavComponent implements OnChanges {
   @Input() dropdown_items;
   @Input() selected_state;
   @Input() day_count;
-  @Input() day_count_array = [];
+  day_count_array = [];
 
   @Output() stateSelected = new EventEmitter();
   @Output() daysSelected = new EventEmitter();

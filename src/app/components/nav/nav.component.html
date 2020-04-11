@@ -2,9 +2,12 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
   <!-- Navbar brand -->
   <mdb-navbar-brand>
-    <div class="navbar-brand navbar-nav mr-auto">
+    <span class='text-white navbar-brand px-4'>CovidCharts</span>
+  </mdb-navbar-brand>
+  <links>
+    <div class="d-flex navbar-nav mr-auto">
       <!-- Dropdown -->
-      <div class="nav-item dropdown" dropdown>
+      <span class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
         {{selected_state.title}}<span class="caret"></span></a>
         <div *dropdownMenu class="dropdownContainer dropdown-menu dropdown dropdown-primary" role="menu">
@@ -17,8 +20,8 @@
           >{{item.title}}
         </div>
         </div>
-      </div>
-      <div class="nav-item dropdown" dropdown>
+      </span>
+      <span class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
         {{day_count}}<span class="caret"></span></a>
         <div *dropdownMenu class="dropdownContainer dropdown-menu dropdown dropdown-primary" role="menu">
@@ -31,8 +34,8 @@
           >{{x + 1}}
         </div>
         </div>
-      </div>
+      </span>
     </div>
-  </mdb-navbar-brand>
+  </links>
 </mdb-navbar>
 <!--/.Navbar-->

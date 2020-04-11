@@ -7,12 +7,8 @@ import { Component, OnChanges, Input } from '@angular/core';
 })
 export class BarChartComponent implements OnChanges {
   public chartType = 'bar';
-  private state_base_url: string = 'https://covidtracking.com/api/states/daily?state=';
-  // private day_count: number = 10;
 
-  // @Input() graph_type: string;
   @Input() data: any[];
-  @Input() day_count;
   @Input() selected_state;
 
   public chartDatasets: Array<any> = [
@@ -29,7 +25,6 @@ export class BarChartComponent implements OnChanges {
   constructor() {}
 
   async ngOnChanges() {
-    await this.getData()
     console.log('changin...');
 
     this.chartDatasets = [
@@ -45,13 +40,6 @@ export class BarChartComponent implements OnChanges {
   changeChartType = (e) => {
     this.chartType = e.target.value
     this.ngOnChanges()
-  }
-
-  getData = async () => {
-    console.log('gettin new data...');
-
-    await fetch(this.state_base_url + this.selected_state.abbv).then( async res => this.data = await res.json());
-    this.data = this.data.slice(0,this.day_count).reverse()
   }
 
   formatData = (mode) => this.data.map(day => day[mode])
