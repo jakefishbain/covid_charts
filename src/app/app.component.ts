@@ -16,9 +16,11 @@ export class AppComponent implements OnInit {
   abbv: string;
   show_diff: boolean = false;
   data: any[];
+  counties_data: any[];
 
-  state_base_url: string = 'https://covidtracking.com/api/states/daily?state=';
+  private state_base_url: string = 'https://covidtracking.com/api/states/daily?state=';
   private us_url: string = 'https://covidtracking.com/api/us/daily';
+  private counties_url: string = 'https://corona.lmao.ninja/v2/jhucsse/counties';
 
   constructor() {
     this.states = states
@@ -26,6 +28,9 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     await this.getData()
+    await fetch(this.counties_url).then(
+      async res => this.counties_data = await res.json()
+    )
   }
 
   getData = async () => {

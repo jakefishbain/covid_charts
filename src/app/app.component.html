@@ -8,15 +8,21 @@
 </app-nav>
 <div class="content d-flex flex-column mt-1">
   <app-bar-chart
-  *ngIf='data'
-  [selected_state]='selected_state'
-  [data]='data'
+    *ngIf='data'
+    [selected_state]='selected_state'
+    [data]='data'
   ></app-bar-chart>
   <div class="h-divider mt-4 pt-4 align-self-center"></div>
   <app-table
-  *ngIf='data'
-  [data]='data'
-  class='pb-4'
+    *ngIf='data'
+    [data]='data'
+    class='mb-5'
   >
   </app-table>
+  <app-counties-table
+
+    *ngIf='counties_data'
+    [data]='counties_data'
+    [selected_state]='selected_state'
+  ></app-counties-table>
 </div>

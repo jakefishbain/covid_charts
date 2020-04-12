@@ -18,3 +18,10 @@
   box-shadow: grey
   ;
  }
+
+ app-table, app-counties-table {
+  display: block;
+  max-height: 500px;
+  min-height: 0;
+  overflow-y: scroll;
+ }
