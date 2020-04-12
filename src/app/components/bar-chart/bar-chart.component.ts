@@ -25,7 +25,6 @@ export class BarChartComponent implements OnChanges {
   constructor() {}
 
   async ngOnChanges() {
-    console.log('changin...');
 
     this.chartDatasets = [
       // loop over

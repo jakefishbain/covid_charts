@@ -1,14 +1,14 @@
 <table mdbTable hover='true' bordered='true' class="z-depth-1 w-100 table-responsive-md">
   <thead>
   <tr>
-    <th [mdbTableSort]="data" sortBy="date"><span class='font-weight-bolder'>Date</span>&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
-    <th [mdbTableSort]="data" *ngFor='let row of data_format' [sortBy]="row['key']">{{row['header']}}&nbsp;
+    <th (sorted)='selectRow($event)' [mdbTableSort]="data" sortBy="date"><span [ngClass]="{'font-weight-bolder': selected_row === 'date'}">Date</span>&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
+    <th (sorted)='selectRow($event)' [mdbTableSort]="data" *ngFor='let row of data_format' [sortBy]="row['key']" [ngClass]="{'font-weight-bolder': selected_row === row['key']}">{{row['header']}}&nbsp;
       <mdb-icon fas icon="sort"></mdb-icon>
     </th>
   </tr>
   </thead>
   <tbody *ngIf='data'>
-  <tr *ngFor="let el of data; let i = index">
+  <tr *ngFor="let el of data">
     <th scope="row">{{el.date | dayFormatter }}</th>
     <td *ngFor='let row of data_format'>{{el[row['key']] | numFormatter }}</td>
   </tr>

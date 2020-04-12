@@ -11,7 +11,7 @@ dayjs().format()
 export class AppComponent implements OnInit {
   states: any[];
   selected_state: any = { 'abbv': 'USA', 'title': 'United States'};
-  day_count: number = 15;
+  day_count: number = 20;
   mode: string = 'deathIncrease';
   abbv: string;
   show_diff: boolean = false;
