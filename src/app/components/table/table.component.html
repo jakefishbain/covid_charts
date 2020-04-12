@@ -7,7 +7,7 @@
     </th>
   </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf='data'>
   <tr *ngFor="let el of data; let i = index">
     <th scope="row">{{el.date | dayFormatter }}</th>
     <td *ngFor='let row of data_format'>{{el[row['key']] | numFormatter }}</td>

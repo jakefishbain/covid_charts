@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -22,6 +22,12 @@ export class TableComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.data = this.data.reverse()
+   }
+
+  ngOnChanges() {
+    this.data = this.data.reverse()
+  }
 
 }
