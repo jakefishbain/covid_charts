@@ -1,0 +1,22 @@
+
+  <table mdbTable hover='true' bordered='true' stickyHeader='true' class="z-depth-1 w-100 table-responsive-md" *ngIf='filtered_data.length'>
+  <thead>
+  <tr>
+    <th *ngIf="selected_state.abbv == 'USA'" (sorted)='selectRow($event)' [mdbTableSort]="filtered_data" [ngClass]="{'font-weight-bolder': selected_row === 'province' }" sortBy="province" >Province&nbsp;
+      <mdb-icon fas icon="sort"></mdb-icon>
+    </th>
+    <th (sorted)='selectRow($event)' [mdbTableSort]="filtered_data" *ngFor='let row of data_format' [ngClass]="{'font-weight-bolder': selected_row === row['key']}" [sortBy]="row['key']" >{{row['header']}}&nbsp;
+      <mdb-icon fas icon="sort"></mdb-icon>
+    </th>
+  </tr>
+  </thead>
+  <tbody *ngIf='data'>
+  <tr *ngFor="let el of filtered_data">
+    <td *ngIf="selected_state.abbv == 'USA'">{{ el.province }}</td>
+    <td>{{ el.county}}</td>
+    <td>{{ el.stats.confirmed}}</td>
+    <td>{{ el.stats.deaths}}</td>
+    <td>{{ el.stats.recovered}}</td>
+  </tr>
+  </tbody>
+</table>

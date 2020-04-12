@@ -1,4 +1,4 @@
-<table mdbTable hover='true' bordered='true' class="z-depth-1 w-100 table-responsive-md">
+<table mdbTable hover='true' stickyHeader='true' bordered='true' class="z-depth-1 w-100 table-responsive-md">
   <thead>
   <tr>
     <th (sorted)='selectRow($event)' [mdbTableSort]="data" sortBy="date"><span [ngClass]="{'font-weight-bolder': selected_row === 'date'}">Date</span>&nbsp;<mdb-icon fas icon="sort"></mdb-icon></th>
