@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { states } from './components/states_data.js'
+import { SnotifyStyle, SnotifyPosition, SnotifyService } from 'ng-snotify'
 import * as dayjs from 'dayjs'
 dayjs().format()
 
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
   private us_url: string = 'https://covidtracking.com/api/us/daily';
   private counties_url: string = 'https://corona.lmao.ninja/v2/jhucsse/counties';
 
-  constructor() {
+  constructor(private snotifyService: SnotifyService) {
     this.states = states
   }
 
@@ -31,6 +32,27 @@ export class AppComponent implements OnInit {
     await fetch(this.counties_url).then(
       async res => this.counties_data = await res.json()
     )
+
+    this.snotifyService.create({
+      title: null,
+      body: 'Click the legend to toggle graphs on and off',
+      config: {
+        position: SnotifyPosition.rightTop,
+        type: SnotifyStyle.info,
+        timeout: 10000
+      }
+    })
+    setTimeout(() =>
+      this.snotifyService.create({
+        title: null,
+        body: 'Select a location and change the days displayed in the menu',
+        config: {
+          position: SnotifyPosition.rightTop,
+          type: SnotifyStyle.info,
+          timeout: 10000
+        }
+      })
+    , 8000)
   }
 
   getData = async () => {
