@@ -39,7 +39,8 @@ export class AppComponent implements OnInit {
       config: {
         position: SnotifyPosition.rightTop,
         type: SnotifyStyle.info,
-        timeout: 10000
+        timeout: 20000,
+        buttons: [ {text: 'Ok', action: null, bold: true} ]
       }
     })
     setTimeout(() =>
@@ -49,10 +50,11 @@ export class AppComponent implements OnInit {
         config: {
           position: SnotifyPosition.rightTop,
           type: SnotifyStyle.info,
-          timeout: 10000
+          timeout: 20000,
+          buttons: [ {text: 'Ok', action: null, bold: true} ]
         }
       })
-    , 8000)
+    , 12000)
   }
 
   getData = async () => {
