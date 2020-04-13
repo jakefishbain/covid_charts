@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     setTimeout(() =>
       this.snotifyService.create({
         title: null,
-        body: 'Select a location and change the days displayed in the menu',
+        body: 'Use the menu to change the location or day count',
         config: {
           position: SnotifyPosition.rightTop,
           type: SnotifyStyle.info,
