@@ -32,6 +32,7 @@ export class BarChartComponent implements OnChanges {
       { data: this.formatData('totalTestResultsIncrease'), label: 'Daily Tests', type: this.chartType},
       { data: this.formatData('positiveIncrease'), label: 'Daily Positives', type: this.chartType},
       { data: this.formatData('negativeIncrease'), label: 'Daily Negatives', type: this.chartType},
+      { data: this.formatData('positive'), label: 'Total Positives', type: this.chartType},
     ]
     this.chartLabels = this.formatData('date').map(day => this.formatDay(day.toString()))
   }
